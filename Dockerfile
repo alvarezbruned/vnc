@@ -16,7 +16,7 @@ EXPOSE 5901
 
 
 COPY vnc_startup.sh /root
-RUN chmod +x /root/.vnc/xstartup /etc/X11/xinit/xinitrc /root/*.sh
+RUN chmod +x /etc/X11/xinit/xinitrc /root/*.sh
 
-ENTRYPOINT ["/root/scripts/vnc_startup.sh"]
+ENTRYPOINT ["/root/vnc_startup.sh"]
 CMD ["--tail-log"]

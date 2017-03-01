@@ -14,7 +14,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y supervisor nano v
 # xvnc server porst, if $DISPLAY=:1 port will be 5901
 EXPOSE 5901
 
-ADD .vnc /root/.vnc
 
 COPY vnc_startup.sh /root
 RUN chmod +x /root/.vnc/xstartup /etc/X11/xinit/xinitrc /root/*.sh

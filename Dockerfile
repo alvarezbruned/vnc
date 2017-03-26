@@ -7,6 +7,7 @@ ENV DISPLAY :1
 ENV VNC_COL_DEPTH 24
 ENV VNC_RESOLUTION 1280x1024
 ENV VNC_PW vncpassword
+ENV INSTALL ""
 
 ############### xvnc / xfce installation
 RUN apt-get update && apt-get upgrade -y && apt-get install -y supervisor nano vnc4server wget
@@ -16,7 +17,12 @@ EXPOSE 5901
 
 
 COPY vnc_startup.sh /root
-RUN chmod +x /etc/X11/xinit/xinitrc /root/*.sh
+RUN mkdir /root/scripts
+COPY scripts/* /root/scripts/
+
+RUN mkdir /root/java
+
+RUN chmod +x /etc/X11/xinit/xinitrc /root/*.sh /root/scripts/*
 
 ENTRYPOINT ["/root/vnc_startup.sh"]
 CMD ["--tail-log"]
